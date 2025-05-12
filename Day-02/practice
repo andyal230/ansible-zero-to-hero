@@ -3,6 +3,7 @@ it will ping to all your invetory nodes.
 
  ad hoc commands for simple task, and for playbook which has huge no of commands o run at a time.
 
+https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 
 
 
