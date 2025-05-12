@@ -6,6 +6,112 @@ it will ping to all your invetory nodes.
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 
 
+What are Ansible ad hoc commands?
+Ad hoc commands in Ansible are simple one-line commands used to perform quick tasks on remote servers without writing a playbook. They are useful for immediate execution of Ansible modules for tasks like installing packages, 
+restarting services, copying files, checking uptime, etc.
+
+
+Basic Syntax:
+
+ansible <hosts> -m <module> -a "<arguments>" [-i inventory] [other options]
+<hosts>: Target group or host from inventory.
+
+-m <module>: The Ansible module to use (e.g., ping, shell, copy, yum, etc.)
+
+-a "<args>": Arguments for the module.
+
+-i: Specify inventory file (if not using default /etc/ansible/hosts).
+
+### 🔹 What are **Ansible ad hoc commands**?
+
+**Ad hoc commands** in Ansible are simple one-line commands used to perform **quick tasks** on remote servers **without writing a playbook**. They are useful for **immediate execution** of Ansible modules for tasks like installing packages, restarting services, copying files, checking uptime, etc.
+
+---
+
+### 🔹 Basic Syntax:
+
+```bash
+ansible <hosts> -m <module> -a "<arguments>" [-i inventory] [other options]
+```
+
+* `<hosts>`: Target group or host from inventory.
+* `-m <module>`: The Ansible module to use (e.g., `ping`, `shell`, `copy`, `yum`, etc.)
+* `-a "<args>"`: Arguments for the module.
+* `-i`: Specify inventory file (if not using default `/etc/ansible/hosts`).
+
+---
+
+### 🔹 Common Modules & Examples
+
+#### ✅ 1. **Ping all hosts** (test connectivity):
+
+```bash
+ansible all -m ping
+```
+
+#### ✅ 2. **Run a shell command** (e.g., check uptime):
+
+```bash
+ansible all -m shell -a "uptime"
+```
+
+#### ✅ 3. **Install a package using `yum` module** (RHEL/CentOS):
+
+```bash
+ansible webservers -m yum -a "name=httpd state=present"
+```
+
+#### ✅ 4. **Copy a file to remote hosts**:
+
+```bash
+ansible all -m copy -a "src=/tmp/file.txt dest=/tmp/file.txt"
+```
+
+#### ✅ 5. **Start a service**:
+
+```bash
+ansible webservers -m service -a "name=httpd state=started"
+```
+
+#### ✅ 6. **Create a user**:
+
+```bash
+ansible all -m user -a "name=devops state=present"
+```
+
+#### ✅ 7. **Check disk usage with `command` module**:
+
+```bash
+ansible all -m command -a "df -h"
+```
+
+> Difference between `command` and `shell`:
+> `command` doesn't support shell features like pipes or environment variables; `shell` does.
+
+---
+
+### 🔹 Inventory Example (`inventory.ini`)
+
+```ini
+[webservers]
+192.168.1.10
+192.168.1.11
+
+[dbservers]
+192.168.1.20
+```
+
+Then run:
+
+```bash
+ansible webservers -i inventory.ini -m ping
+```
+
+---
+
+Would you like a table of useful ad hoc modules or examples tailored to your environment (e.g., EKS, EC2, etc.)?
+
+
 
 
 
