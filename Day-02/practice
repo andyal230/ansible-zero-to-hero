@@ -1,6 +1,9 @@
 ansible -i inventory.ini -m ping all
 it will ping to all your invetory nodes.
 
+--> if its is using playbook then below
+ansible-playbook -i inventory.ini firstplaybook.yaml
+
  ad hoc commands for simple task, and for playbook which has huge no of commands o run at a time.
 
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
